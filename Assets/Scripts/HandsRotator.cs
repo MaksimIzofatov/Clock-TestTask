@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
@@ -52,6 +53,7 @@ public class HandsRotator : MonoBehaviour
 
         _hourHand.transform.localRotation = Quaternion.Euler(0, 0, -hourAngle);
         _minuteHand.transform.localRotation = Quaternion.Euler(0, 0, -minuteAngle);
-        _secondHand.transform.localRotation = Quaternion.Euler(0, 0, -secondAngle);
+        _secondHand.transform.DOLocalRotate(Quaternion.Euler(0, 0, -secondAngle).eulerAngles, 
+                GlobalConstants.ConstantsForTime.TICK - 0.2f);
     }
 }
