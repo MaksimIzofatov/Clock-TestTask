@@ -277,6 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 100147782}
   - component: {fileID: 100147781}
+  - component: {fileID: 100147783}
   m_Layer: 0
   m_Name: HourHand
   m_TagString: HourHand
@@ -344,13 +345,48 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100147780}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.9135455, w: 0.4067366}
+  m_LocalRotation: {x: -0, y: -0, z: -0.9821585, w: -0.18805502}
   m_LocalPosition: {x: -0.0030059814, y: 0.8380127, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 102269602}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -201.679}
+--- !u!70 &100147783
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100147780}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.41000003}
+  m_Size: {x: 0.32, y: 1.64}
+  m_Direction: 0
 --- !u!1 &102269601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1470,7 +1506,7 @@ MonoBehaviour:
   _rotator: {fileID: 761101614}
   _timeViewer: {fileID: 106562579}
   _timeEditer: {fileID: 106562580}
-  _inputMoise: {fileID: 0}
+  _inputMouse: {fileID: 519420033}
 --- !u!4 &907881216
 Transform:
   m_ObjectHideFlags: 0
@@ -2122,6 +2158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1776370653}
   - component: {fileID: 1776370652}
+  - component: {fileID: 1776370654}
   m_Layer: 0
   m_Name: MinuteHand
   m_TagString: MinuteHand
@@ -2196,6 +2233,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 102269602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1776370654
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776370651}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.9112002}
+  m_Size: {x: 0.32000002, y: 2.6800005}
+  m_Direction: 0
 --- !u!1 &1794762633
 GameObject:
   m_ObjectHideFlags: 0
