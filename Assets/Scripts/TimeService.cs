@@ -5,14 +5,25 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine;
 
-
-public class TimeService : MonoBehaviour
+public class TimeService
 {
-    private const string Url = "https://yandex.com/time/sync.json";
+    public async Task<DateTime> LoadTimeFromServer()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var response = await client.GetStringAsync(GlobalConstants.Links.TIME_URL);
+                    var json = JsonUtility.FromJson<TimeTemplate>(response);
+                    var offset = DateTimeOffset.FromUnixTimeMilliseconds(json.time).ToLocalTime();
 
-    public  void GetCurrentTimeAsync()
-    {
-        
-    }
-
+                    return offset.DateTime;
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                Debug.Log(e.Message);
+                return DateTime.Now;
+            }
+        }
 }
