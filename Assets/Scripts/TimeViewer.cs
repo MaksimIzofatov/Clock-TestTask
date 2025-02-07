@@ -20,6 +20,7 @@ public class TimeViewer : MonoBehaviour
     public void OnClickEditButton()
     {
         _edit.transform.DOScaleX(0, 0.5f);
+        _save.SetActive(true);
         _save.transform.DOMoveX(700, 0.5f);
     }
 
@@ -27,5 +28,10 @@ public class TimeViewer : MonoBehaviour
     {
         _save.transform.DOMoveX(1150, 0.5f);
         _edit.transform.DOScaleX(1, 0.5f);
+    }
+
+    private void SwitchActive()
+    {
+        _save.SetActive(false);
     }
 }
