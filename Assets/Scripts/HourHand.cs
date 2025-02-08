@@ -25,7 +25,7 @@ public class HourHand : HandBase
     {
         if (!_isEdit)
         {
-            float hourAngle = (_currentTime.Hour % GlobalConstants.ConstantsForTime.COUNT_HOURS
+            float hourAngle = (_currentTime.Hour 
                                + _currentTime.Minute / GlobalConstants.ConstantsForTime.COUNT_MINUTES_AND_SECONDS) 
                               * GlobalConstants.ConstantsForTime.GRADUS_FOR_HOUR; 
 
