@@ -10,20 +10,25 @@ public class MinuteHand : MonoBehaviour
     public event Action<DateTime> MouseMove;
     
     private Transform _transform;
+    private Camera _camera;
     private DateTime _currentTime;
     private DateTime _editedTime;
     private bool _isEdit;
+    private bool _wasEdited;
 
     private void Start()
     {
         _transform = GetComponent<Transform>();
+        _camera = Camera.main;
     }
 
     private void OnMouseDrag()
     {
         if (_isEdit)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _wasEdited = true;
+            _editedTime = _currentTime;
+            Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             Vector3 directionToMouse = mousePosition - _transform.position;
             float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg -90;
@@ -42,8 +47,12 @@ public class MinuteHand : MonoBehaviour
 
     public void OnSave()
     {
-        Debug.Log("save" + _editedTime.ToString("HH:mm:ss"));
-        MouseMove?.Invoke(_editedTime);
+        if (_wasEdited)
+        {
+            _wasEdited = false;
+            _editedTime = _editedTime.AddSeconds(_currentTime.Second - _editedTime.Second);
+            MouseMove?.Invoke(_editedTime);
+        }
     }
     
     private void Rotate()

@@ -14,7 +14,18 @@ public class TimeEditer : MonoBehaviour
     [SerializeField] private TMP_InputField _timeInput;
     
     private DateTime _time;
-    
+    private bool _wasEdited;
+
+    private void Start()
+    {
+        _timeInput.onEndEdit.AddListener(EndEditInputField);
+    }
+
+    private void EndEditInputField(string text)
+    {
+        _wasEdited = true;
+    }
+
     public void OnChangeTime(DateTime time)
     {
         _time = time;
@@ -34,8 +45,13 @@ public class TimeEditer : MonoBehaviour
         if(DateTime.TryParse(_timeInput.text, out var time))
         {
             _timeInput.gameObject.SetActive(false);
+            
             OnClickCancelButton();
-            TimeEdit?.Invoke(time);
+            if (_wasEdited)
+            {
+                _wasEdited = false;
+                TimeEdit?.Invoke(time);
+            }
         }
         else
         {
@@ -49,4 +65,10 @@ public class TimeEditer : MonoBehaviour
         _edit.transform.DOScaleX(1, 0.5f);
         _timeInput.gameObject.SetActive(false);
     }
+
+    private bool IsChangedTime(DateTime time)
+    {
+        return _time.Hour != time.Hour || _time.Minute != time.Minute || _time.Second != time.Second;
+    }
+    
 }

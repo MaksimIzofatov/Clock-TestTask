@@ -9,19 +9,24 @@ public class HourHand : MonoBehaviour
     public event Action<DateTime> MouseMove;
     
     private Transform _transform;
+    private Camera _camera;
     private DateTime _currentTime;
     private DateTime _editedTime;
     private bool _isEdit;
+    private bool _wasEdited;
 
     private void Start()
     {
         _transform = GetComponent<Transform>();
+        _camera = Camera.main;
     }
 
     private void OnMouseDrag()
     {
         if (_isEdit)
         {
+            _wasEdited = true;  
+            _editedTime = _currentTime;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             Vector3 directionToMouse = mousePosition - _transform.position;
@@ -31,7 +36,7 @@ public class HourHand : MonoBehaviour
                 angle -= 360;
             }
             _transform.localRotation = Quaternion.Euler(0, 0, angle);
-            int hours = Mathf.RoundToInt(-angle / GlobalConstants.ConstantsForTime.GRADUS_FOR_HOUR);
+            int hours = (int)(-angle / GlobalConstants.ConstantsForTime.GRADUS_FOR_HOUR);
             _editedTime = _currentTime.AddHours(hours - _currentTime.Hour);
             
         }
@@ -39,8 +44,12 @@ public class HourHand : MonoBehaviour
 
     public void OnSave()
     {
-        Debug.Log("save" + _editedTime.ToString("HH:mm:ss"));
-        MouseMove?.Invoke(_editedTime);
+        if (_wasEdited)
+        {
+            _wasEdited = false;
+            _editedTime = _editedTime.AddSeconds(_currentTime.Second - _editedTime.Second);
+            MouseMove?.Invoke(_editedTime);
+        }
     }
     
     private void Rotate()
