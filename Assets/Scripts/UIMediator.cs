@@ -2,29 +2,42 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class UIMediator : MonoBehaviour
-{
-    [SerializeField] private HandsRotator _rotator;
+{ 
+    [SerializeField] private TickClock _tick;
     [SerializeField] private TimeViewer _timeViewer;
     [SerializeField] private TimeEditer _timeEditer;
-    [SerializeField] private InputMouse _inputMouse;
+    [SerializeField] private HourHand _hourHand;
+    [SerializeField] private MinuteHand _minuteHand;
+    [SerializeField] private SecondHand _secondHand;
 
     private void OnEnable()
     {
-        _rotator.ChangeTime += _timeViewer.OnChangeTime;
-        _rotator.ChangeTime += _timeEditer.OnChangeTime;
-        _timeEditer.TimeEdit += _timeViewer.OnChangeTime;
-        _timeEditer.TimeEdit += _rotator.OnEditTime;
-        _inputMouse.MouseMove += _rotator.OnMouseMove;
+        _tick.ChangeTime += _timeViewer.OnChangeTime;
+        _tick.ChangeTime += _timeEditer.OnChangeTime;
+        _tick.ChangeTime += _hourHand.OnChangeTime;
+        _tick.ChangeTime += _minuteHand.OnChangeTime;
+        _tick.ChangeTime += _secondHand.OnChangeTime;
+        
+        _timeEditer.TimeEdit += _tick.OnEditTime;
+        
+        _hourHand.MouseMove += _tick.OnEditTime;
+        _minuteHand.MouseMove += _tick.OnEditTime;
     }
 
     private void OnDisable()
     {
-        _rotator.ChangeTime -= _timeViewer.OnChangeTime;
-        _rotator.ChangeTime -= _timeEditer.OnChangeTime;
-        _timeEditer.TimeEdit -= _timeViewer.OnChangeTime;
-        _timeEditer.TimeEdit -= _rotator.OnEditTime;
-        _inputMouse.MouseMove -= _rotator.OnMouseMove;
+        _tick.ChangeTime -= _timeViewer.OnChangeTime;
+        _tick.ChangeTime -= _timeEditer.OnChangeTime;
+        _tick.ChangeTime -= _hourHand.OnChangeTime;
+        _tick.ChangeTime -= _minuteHand.OnChangeTime;
+        _tick.ChangeTime -= _secondHand.OnChangeTime;
+        
+        _timeEditer.TimeEdit -= _tick.OnEditTime;
+        
+        _hourHand.MouseMove -= _tick.OnEditTime;
+        _minuteHand.MouseMove -= _tick.OnEditTime;
     }
 }

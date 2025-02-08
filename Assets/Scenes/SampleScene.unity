@@ -217,8 +217,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 519420033}
-        m_TargetAssemblyTypeName: InputMouse, Assembly-CSharp
+      - m_Target: {fileID: 1776370655}
+        m_TargetAssemblyTypeName: MinuteHand, Assembly-CSharp
+        m_MethodName: OnIsEdit
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 100147784}
+        m_TargetAssemblyTypeName: HourHand, Assembly-CSharp
         m_MethodName: OnIsEdit
         m_Mode: 6
         m_Arguments:
@@ -278,6 +290,7 @@ GameObject:
   - component: {fileID: 100147782}
   - component: {fileID: 100147781}
   - component: {fileID: 100147783}
+  - component: {fileID: 100147784}
   m_Layer: 0
   m_Name: HourHand
   m_TagString: HourHand
@@ -387,6 +400,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.41000003}
   m_Size: {x: 0.32, y: 1.64}
   m_Direction: 0
+--- !u!114 &100147784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100147780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beac69d021199d54688f27822e08e761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &102269601
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 145587009}
   - component: {fileID: 145587008}
+  - component: {fileID: 145587010}
   m_Layer: 0
   m_Name: SecondHand
   m_TagString: Untagged
@@ -641,37 +667,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 102269602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &172392110
-GameObject:
+--- !u!114 &145587010
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 172392111}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &172392111
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172392110}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.996, y: -3.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 145587007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715cfd30e293a4298aa9873494d32d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &209048159
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +918,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65cacbfa46e190545aa803b951dbad2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isDragMouse: 0
+  _isHourHand: 0
+  _isEdit: 0
 --- !u!1 &651957638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,7 +1305,6 @@ GameObject:
   - component: {fileID: 761101612}
   - component: {fileID: 761101611}
   - component: {fileID: 761101613}
-  - component: {fileID: 761101614}
   m_Layer: 0
   m_Name: Clock without hands
   m_TagString: Untagged
@@ -1379,24 +1388,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 761101610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cff154d1ed073c04281607052a83739e, type: 3}
+  m_Script: {fileID: 11500000, guid: cc5213d04f1c72449bcd63874e1fcaf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &761101614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761101610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d6151f7ac3e6b40969e442a23a24c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hourHand: {fileID: 100147780}
-  _minuteHand: {fileID: 1776370651}
-  _secondHand: {fileID: 145587007}
 --- !u!1 &904821099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,10 +1497,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7db01755f32746af98db7ca846dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotator: {fileID: 761101614}
+  _tick: {fileID: 761101613}
   _timeViewer: {fileID: 106562579}
   _timeEditer: {fileID: 106562580}
-  _inputMouse: {fileID: 519420033}
+  _hourHand: {fileID: 100147784}
+  _minuteHand: {fileID: 1776370655}
+  _secondHand: {fileID: 145587010}
 --- !u!4 &907881216
 Transform:
   m_ObjectHideFlags: 0
@@ -1617,8 +1613,44 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 519420033}
-        m_TargetAssemblyTypeName: InputMouse, Assembly-CSharp
+      - m_Target: {fileID: 1776370655}
+        m_TargetAssemblyTypeName: MinuteHand, Assembly-CSharp
+        m_MethodName: OnIsEdit
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1776370655}
+        m_TargetAssemblyTypeName: MinuteHand, Assembly-CSharp
+        m_MethodName: OnSave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 100147784}
+        m_TargetAssemblyTypeName: HourHand, Assembly-CSharp
+        m_MethodName: OnSave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 100147784}
+        m_TargetAssemblyTypeName: HourHand, Assembly-CSharp
         m_MethodName: OnIsEdit
         m_Mode: 6
         m_Arguments:
@@ -1762,13 +1794,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 519420033}
-        m_TargetAssemblyTypeName: InputMouse, Assembly-CSharp
+      - m_Target: {fileID: 1776370655}
+        m_TargetAssemblyTypeName: MinuteHand, Assembly-CSharp
         m_MethodName: OnIsEdit
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 100147784}
+        m_TargetAssemblyTypeName: HourHand, Assembly-CSharp
+        m_MethodName: OnIsEdit
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HourHand, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2159,6 +2215,7 @@ GameObject:
   - component: {fileID: 1776370653}
   - component: {fileID: 1776370652}
   - component: {fileID: 1776370654}
+  - component: {fileID: 1776370655}
   m_Layer: 0
   m_Name: MinuteHand
   m_TagString: MinuteHand
@@ -2226,13 +2283,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776370651}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.9607792, w: 0.2773146}
+  m_LocalRotation: {x: -0, y: -0, z: -0.5260818, w: 0.850434}
   m_LocalPosition: {x: -0.0079956055, y: 0.8619995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 102269602}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -63.482}
 --- !u!70 &1776370654
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2268,6 +2325,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.9112002}
   m_Size: {x: 0.32000002, y: 2.6800005}
   m_Direction: 0
+--- !u!114 &1776370655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776370651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c02ed9d19eacbf44da2d07e421f931c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1794762633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,4 +2532,3 @@ SceneRoots:
   - {fileID: 1612107493}
   - {fileID: 907881216}
   - {fileID: 102269602}
-  - {fileID: 172392111}
