@@ -4,15 +4,9 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class SecondHand : MonoBehaviour
+public class SecondHand : HandBase
 {
-    private DateTime _currentTime;
-    public void OnChangeTime(DateTime time)
-    {
-        _currentTime = time;
-        Rotate();
-    }
-    private void Rotate()
+    protected  override void Rotate()
     {
         float secondAngle = _currentTime.Second * GlobalConstants.ConstantsForTime.GRADUS_FOR_MINUTE_AND_SECOND;
         

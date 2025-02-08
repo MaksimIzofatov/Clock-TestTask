@@ -41,7 +41,6 @@ public class TimeEditer : MonoBehaviour
 
     public void OnClickSaveButton()
     {
-        
         if(DateTime.TryParse(_timeInput.text, out var time))
         {
             _timeInput.gameObject.SetActive(false);
@@ -65,10 +64,4 @@ public class TimeEditer : MonoBehaviour
         _edit.transform.DOScaleX(1, 0.5f);
         _timeInput.gameObject.SetActive(false);
     }
-
-    private bool IsChangedTime(DateTime time)
-    {
-        return _time.Hour != time.Hour || _time.Minute != time.Minute || _time.Second != time.Second;
-    }
-    
 }

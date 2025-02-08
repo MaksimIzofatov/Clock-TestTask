@@ -5,17 +5,8 @@ using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 
-public class MinuteHand : MonoBehaviour
+public class MinuteHand : HandBase
 {
-    public event Action<DateTime> MouseMove;
-    
-    private Transform _transform;
-    private Camera _camera;
-    private DateTime _currentTime;
-    private DateTime _editedTime;
-    private bool _isEdit;
-    private bool _wasEdited;
-
     private void Start()
     {
         _transform = GetComponent<Transform>();
@@ -24,38 +15,17 @@ public class MinuteHand : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (_isEdit)
-        {
-            _wasEdited = true;
-            _editedTime = _currentTime;
-            Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0;
-            Vector3 directionToMouse = mousePosition - _transform.position;
-            float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg -90;
-            if (angle > 0)
-            {
-                angle -= 360;
-            }
-            _transform.localRotation = Quaternion.Euler(0, 0, angle);
-            int minutes = Mathf.RoundToInt(-angle / GlobalConstants.ConstantsForTime.GRADUS_FOR_MINUTE_AND_SECOND);
-
-            _editedTime = _currentTime.AddMinutes(minutes - _currentTime.Minute);
-            Debug.Log(_editedTime.ToString("HH:mm:ss"));
-            
-        }
+       EditTime();
     }
 
-    public void OnSave()
+    protected override void SetTime(float angle)
     {
-        if (_wasEdited)
-        {
-            _wasEdited = false;
-            _editedTime = _editedTime.AddSeconds(_currentTime.Second - _editedTime.Second);
-            MouseMove?.Invoke(_editedTime);
-        }
+        int minutes = (int)(-angle / GlobalConstants.ConstantsForTime.GRADUS_FOR_MINUTE_AND_SECOND);
+
+        _editedTime = _currentTime.AddMinutes(minutes - _currentTime.Minute);
     }
-    
-    private void Rotate()
+
+    protected override void Rotate()
     {
         if (!_isEdit)
         {
@@ -66,17 +36,5 @@ public class MinuteHand : MonoBehaviour
             _transform.DOLocalRotate(Quaternion.Euler(0, 0, -minuteAngle).eulerAngles,
                 GlobalConstants.ConstantsForTime.TICK);
         }
-
-    }
-    
-    public void OnIsEdit(bool isEdit)
-    {
-        _isEdit = isEdit;
-    }
-    
-    public void OnChangeTime(DateTime time)
-    {
-        _currentTime = time;
-        Rotate();
     }
 }
