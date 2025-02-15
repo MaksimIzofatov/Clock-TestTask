@@ -19,6 +19,11 @@ public class TimeEditer : MonoBehaviour
         _timeInput.onEndEdit.AddListener(EndEditInputField);
     }
 
+    private void OnDisable()
+    {
+        _timeInput.onEndEdit.RemoveListener(EndEditInputField);
+    }
+
     private void EndEditInputField(string text)
     {
         _wasEdited = true;
@@ -34,7 +39,7 @@ public class TimeEditer : MonoBehaviour
         _timeInput.text = _time.ToString("HH:mm:ss");
         _edit.transform.DOScaleX(0, 0.5f);
         _save.SetActive(true);
-        _save.transform.DOMoveX(0.9f, 0.5f);
+        _save.transform.DOMoveX(6f, 0.5f);
     }
 
     public void OnClickSaveButton()
@@ -58,7 +63,7 @@ public class TimeEditer : MonoBehaviour
 
     public void OnClickCancelButton()
     {
-        _save.transform.DOMoveX(3, 0.5f).OnComplete(() => _save.SetActive(false));
+        _save.transform.DOMoveX(9, 0.5f).OnComplete(() => _save.SetActive(false));
         _edit.transform.DOScaleX(1, 0.5f);
         _timeInput.gameObject.SetActive(false);
     }

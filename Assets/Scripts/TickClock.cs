@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -15,10 +16,8 @@ public class TickClock : MonoBehaviour
     {
         _timeService = time;
     }
-    private async void Start()
+    private void Start()
     {
-        _currentTime = await _timeService.LoadTimeFromServer();
-        
         StartCoroutine(Tick());
     }
 
@@ -27,9 +26,18 @@ public class TickClock : MonoBehaviour
         _currentTime = time;
         ChangeTime?.Invoke(_currentTime);
     }
+    
 
     private IEnumerator Tick()
     {
+        yield return StartCoroutine(_timeService.LoadTimeFromServer());
+        
+        ParseResponse(_timeService.Result);
+        // while (!_timeService.Success)
+        // {
+        //     ParseResponse(_timeService.Result);
+        // }
+        
         while (true)
         {
             _currentTime = _currentTime.AddSeconds(GlobalConstants.ConstantsForTime.TICK);
@@ -38,6 +46,14 @@ public class TickClock : MonoBehaviour
             
             yield return new WaitForSeconds(GlobalConstants.ConstantsForTime.TICK);
         }
+    }
+
+    private void ParseResponse(string response)
+    {
+        var json = JsonUtility.FromJson<TimeTemplate>(response);
+        var offset = DateTimeOffset.FromUnixTimeMilliseconds(json.time).ToLocalTime();
+
+        _currentTime = offset.DateTime;
     }
 
 }
