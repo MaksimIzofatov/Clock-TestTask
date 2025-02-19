@@ -24,7 +24,7 @@ public class TimeEditor : MonoBehaviour
     public void HandleEditButtonClick()
     {
         _timeInput.gameObject.SetActive(true);
-        _timeInput.text = _currentTime.ToString("HH:mm:ss");
+        _timeInput.text = _currentTime.ToString(_timeFormat);
         _edit.transform.DOScaleX(0, 0.5f);
         _save.SetActive(true);
         _save.transform.DOMoveX(6f, 0.5f);
