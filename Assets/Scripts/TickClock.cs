@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 using Zenject;
-using DG.Tweening;
 
 public class TickClock : MonoBehaviour
 {
     public event Action<DateTime> ChangeTime;
 
     [SerializeField] private GameObject _textError;
+    
+    private const int TICK_SECOND = 1;
     
     private TimeService _timeService;
     private DateTime _currentTime;
@@ -20,6 +21,7 @@ public class TickClock : MonoBehaviour
     {
         _timeService = time;
     }
+    
     private void Start()
     {
         StartCoroutine(Tick());
@@ -47,17 +49,22 @@ public class TickClock : MonoBehaviour
         
         while (true)
         {
-            _currentTime = _currentTime.AddSeconds(GlobalConstants.ConstantsForTime.TICK);
+            _currentTime = _currentTime.AddSeconds(TICK_SECOND);
 
-            if (_tempTimeToErrorActive <= _timeToErrorActive)
-                _tempTimeToErrorActive++;
-            else
-                _textError.SetActive(false);
+            CountTimeForViewOfErrorMessage();
             
             ChangeTime?.Invoke(_currentTime);
             
-            yield return new WaitForSeconds(GlobalConstants.ConstantsForTime.TICK);
+            yield return new WaitForSeconds(TICK_SECOND);
         }
+    }
+
+    private void CountTimeForViewOfErrorMessage()
+    {
+        if (_tempTimeToErrorActive <= _timeToErrorActive)
+            _tempTimeToErrorActive++;
+        else
+            _textError.SetActive(false);
     }
 
     private void ParseResponse(string response)

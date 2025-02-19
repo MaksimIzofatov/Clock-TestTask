@@ -6,7 +6,6 @@ public class HourHand : HandBase
     private void Start()
     {
         _transform = GetComponent<Transform>();
-        _camera = Camera.main;
     }
 
     private void OnMouseDrag()
@@ -16,7 +15,7 @@ public class HourHand : HandBase
 
     protected override void SetTime(float angle)
     {
-        int hours = (int)(-angle / GlobalConstants.ConstantsForTime.GRADUS_FOR_HOUR);
+        int hours = (int)(-angle / GRADUS_FOR_HOUR);
 
         _editedTime = _currentTime.AddHours(hours - _currentTime.Hour);
     }
@@ -26,11 +25,11 @@ public class HourHand : HandBase
         if (!_isEdit)
         {
             float hourAngle = (_currentTime.Hour 
-                               + _currentTime.Minute / GlobalConstants.ConstantsForTime.COUNT_MINUTES_AND_SECONDS) 
-                              * GlobalConstants.ConstantsForTime.GRADUS_FOR_HOUR; 
+                               + _currentTime.Minute / COUNT_MINUTES_AND_SECONDS) 
+                              * GRADUS_FOR_HOUR; 
 
             _transform.DOLocalRotate(Quaternion.Euler(0, 0, -hourAngle).eulerAngles, 
-                GlobalConstants.ConstantsForTime.TICK);
+                TICK);
         }
     }
 }

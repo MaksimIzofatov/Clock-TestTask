@@ -1,9 +1,10 @@
 using System;
+using System.Globalization;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class TimeEditer : MonoBehaviour
+public class TimeEditor : MonoBehaviour
 {
     public event Action<DateTime> TimeEdit;
     
@@ -11,49 +12,35 @@ public class TimeEditer : MonoBehaviour
     [SerializeField] private GameObject _save;
     [SerializeField] private TMP_InputField _timeInput;
     
-    private DateTime _time;
-    private bool _wasEdited;
-
-    private void Start()
-    {
-        _timeInput.onEndEdit.AddListener(EndEditInputField);
-    }
-
-    private void OnDisable()
-    {
-        _timeInput.onEndEdit.RemoveListener(EndEditInputField);
-    }
-
-    private void EndEditInputField(string text)
-    {
-        _wasEdited = true;
-    }
+    private const string _timeFormat = "HH:mm:ss";
+    
+    private DateTime _currentTime;
+    private CultureInfo _cultureInfo = new("ru-RU");
 
     public void OnChangeTime(DateTime time)
     {
-        _time = time;
+        _currentTime = time;
     }
-    public void OnClickEditButton()
+    public void HandleEditButtonClick()
     {
         _timeInput.gameObject.SetActive(true);
-        _timeInput.text = _time.ToString("HH:mm:ss");
+        _timeInput.text = _currentTime.ToString("HH:mm:ss");
         _edit.transform.DOScaleX(0, 0.5f);
         _save.SetActive(true);
         _save.transform.DOMoveX(6f, 0.5f);
     }
 
-    public void OnClickSaveButton()
+    public void HandleSaveButtonClick()
     {
-        if(DateTime.TryParse(_timeInput.text, out var time))
+        if (DateTime.TryParseExact(_timeInput.text, _timeFormat, _cultureInfo,
+                DateTimeStyles.NoCurrentDateDefault, out var time))
         {
-            _timeInput.gameObject.SetActive(false);
-            
-            OnClickCancelButton();
-            if (_wasEdited)
+            if (_currentTime.Hour != time.Hour || _currentTime.Minute != time.Minute)
             {
-                _wasEdited = false;
                 TimeEdit?.Invoke(time);
             }
+            
+            HandleCancelButtonClick();
         }
         else
         {
@@ -61,7 +48,7 @@ public class TimeEditer : MonoBehaviour
         }
     }
 
-    public void OnClickCancelButton()
+    public void HandleCancelButtonClick()
     {
         _save.transform.DOMoveX(9, 0.5f).OnComplete(() => _save.SetActive(false));
         _edit.transform.DOScaleX(1, 0.5f);

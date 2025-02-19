@@ -7,11 +7,11 @@ public class TimeService
     public string Result { get; private set; }
     public bool RequestIsSuccess { get; private set; } = true;
     
-    private const string TimeURL = "https://timeapi.io/api/time/current/zone?timeZone=Europe%2FMinsk";
+    private const string TIME_URL = "https://timeapi.io/api/time/current/zone?timeZone=Europe%2FMinsk";
 
     public IEnumerator LoadTimeFromServer()
     {
-        using (UnityWebRequest request = UnityWebRequest.Get(TimeURL))
+        using (UnityWebRequest request = UnityWebRequest.Get(TIME_URL))
         {
             var operation = request.SendWebRequest();
             yield return new WaitUntil(() => operation.isDone);

@@ -206,8 +206,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 106562580}
-        m_TargetAssemblyTypeName: TimeEditer, Assembly-CSharp
-        m_MethodName: OnClickCancelButton
+        m_TargetAssemblyTypeName: TimeEditor, Assembly-CSharp
+        m_MethodName: HandleCancelButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -941,7 +941,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 50, y: 90}
+  m_AnchoredPosition: {x: 50.00006, y: 90}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &651957640
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tick: {fileID: 761101613}
   _timeViewer: {fileID: 106562579}
-  _timeEditer: {fileID: 106562580}
+  timeEditor: {fileID: 106562580}
   _hourHand: {fileID: 100147784}
   _minuteHand: {fileID: 1776370655}
   _secondHand: {fileID: 145587010}
@@ -1588,8 +1588,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 106562580}
-        m_TargetAssemblyTypeName: TimeEditer, Assembly-CSharp
-        m_MethodName: OnClickSaveButton
+        m_TargetAssemblyTypeName: TimeEditor, Assembly-CSharp
+        m_MethodName: HandleSaveButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1793,8 +1793,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 106562580}
-        m_TargetAssemblyTypeName: TimeEditer, Assembly-CSharp
-        m_MethodName: OnClickEditButton
+        m_TargetAssemblyTypeName: TimeEditor, Assembly-CSharp
+        m_MethodName: HandleEditButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

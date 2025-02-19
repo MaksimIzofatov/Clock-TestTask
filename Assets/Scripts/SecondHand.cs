@@ -5,9 +5,9 @@ public class SecondHand : HandBase
 {
     protected  override void Rotate()
     {
-        float secondAngle = _currentTime.Second * GlobalConstants.ConstantsForTime.GRADUS_FOR_MINUTE_AND_SECOND;
+        float secondAngle = _currentTime.Second * GRADUS_FOR_MINUTE_AND_SECOND;
         
         transform.DOLocalRotate(Quaternion.Euler(0, 0, -secondAngle).eulerAngles, 
-            GlobalConstants.ConstantsForTime.TICK);
+            TICK);
     }
 }
